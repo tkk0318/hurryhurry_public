@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+.h_inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+#header{
+	width: 100%;
+	height: 80px;	
+	background-color: #3a75d4;
+	position: fixed;
+	top: 0;
+	box-sizing: border-box;
+	z-index: 1111;
+	
+}
+div.h_inner h1 a{
+	color: white;
+	   text-decoration: none;
+	   font-style: italic;
+}
+
+/* 햄버거 버튼--------------------------------------------- */
+#line-wrapper {
+	cursor: pointer;
+	height: 35px;
+	position: fixed;
+	top: 15px;
+	right:150px;
+	z-index: 111111;
+	transition: 0.5s;
+}
+
+.init {
+	animation: none !important;
+}
+
+.line {
+	background: white;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	width: 56px;
+	height: 8px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.line-top {
+	animation: line-top .5s forwards ease-out, line-top-rotate .3s .5s
+		forwards ease-out;
+}
+
+.top-reverse {
+	animation: line-top-rotate-reverse .3s forwards ease-out,
+		line-top-reverse .5s .3s forwards ease-out;
+}
+
+.line-mid {
+	animation: line-mid .5s forwards ease-out;
+}
+
+.mid-reverse {
+	animation: line-mid-invisible .3s forwards ease-out, line-mid-reverse
+		.5s .3s forwards ease-out;
+}
+
+.line-bot {
+	animation: line-bot .5s forwards ease-out, line-bot-rotate .3s .5s
+		forwards ease-out;
+}
+
+.bot-reverse {
+	animation: line-bot-rotate-reverse .3s forwards ease-out,
+		line-bot-reverse .5s .3s forwards ease-out;
+}
+
+@keyframes line-top {
+  0% {transform:translateY(0px)}
+  100% {transform:translateY(13px)}
+}
+@keyframes line-top-reverse {
+  0% {transform:translateY(13px)}
+  100% {transform:translateY(0px)}
+}
+@keyframes line-top-rotate {
+  0% {transform:translateY(13px) rotateZ(0deg)}
+  100% {transform:translateY(13px) rotateZ(45deg)}
+}
+@keyframes line-top-rotate-reverse {
+  0% {transform:translateY(13px) rotateZ(45deg)}
+  100% {transform:translateY(13px) rotateZ(0deg)}
+}
+@keyframes line-mid {
+  0% {transform:scale(1)}
+  100% {transform:scale(0)}
+}
+@keyframes line-mid-reverse {
+  0% {transform:scale(0)}
+  100% {transform:scale(1)}
+}
+@keyframes line-mid-invisible {
+  0% {transform:scale(0)}
+  100% {transform:scale(0)}
+}
+@keyframes line-bot {
+  0% {transform:translateY(0px)}
+  100% {transform:translateY(-13px)}
+}
+@keyframes line-bot-reverse {
+  0% {transform:translateY(-13px)}
+  100% {transform:translateY(0px)}
+}
+@keyframes line-bot-rotate {
+  0% {transform:translateY(-13px) rotateZ(0deg)}
+  100% {transform:translateY(-13px) rotateZ(135deg)}
+}
+@keyframes line-bot-rotate-reverse {
+  0% {transform:translateY(-13px) rotateZ(135deg)}
+  100% {transform:translateY(-13px) rotateZ(0deg)}
+}
+/* ---------------------메뉴바----------------------- */
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 11;
+	top: 0;
+	right: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.sidenav p {
+	font-size: 50px;
+	color: white;
+	text-align: center;
+}
+
+.sidenav a {
+	padding: 20px 25px;
+	text-decoration: none;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: gray;
+}
+
+#menu1{
+	display: block;
+	text-align: center;
+}
+
+.sidenav #menu1, #menu2 {
+	display: none;
+}
+
+.sidenav #menu1 a, #menu2 a {
+	display: inline;
+}
+
+.sidenav #menu1 a img {
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+
+.sidenav #menu2 a img {
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}

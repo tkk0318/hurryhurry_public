@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mem">
+
+	<select id="all" resultType="com.toilet.vo.MemVO">
+		SELECT * FROM mem_t
+	</select>
+	
+	<!--login하는 select -->
+	<select id="login" parameterType="java.util.Map" resultType="com.toilet.vo.MemVO">
+		SELECT * FROM mem_t
+		WHERE userID = #{userID}		
+	</select>
+	
+	<!--login하는 select -->
+	<!-- <select id="login" parameterType="java.util.Map" resultType="com.toilet.vo.MemVO">
+		SELECT * FROM mem_t
+		WHERE userID = #{userID} AND m_pw = #{m_pw}
+	</select> -->
+
+	<!-- 임시login(은혜테스트용!!!!) -->
+	<select id="temp_login" parameterType="String" resultType="com.toilet.vo.MemVO">
+		SELECT * FROM mem_t
+		WHERE userID = #{userID}
+	</select>
+	
+	<!-- 소셜로그인 아이디(메일)를 db에 저장 -->
+	<insert id="socialID" parameterType="String">
+		INSERT INTO mem_t(mem_idx,userID,join_date,status)
+		VALUES(mem_seq.NEXTVAL,#{userID},sysdate,0)
+	</insert>
+	
+</mapper>

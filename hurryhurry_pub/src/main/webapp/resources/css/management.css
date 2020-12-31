@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+#s_management{
+	/* border: 1px solid red; */
+	width: 1200px;
+	margin: 0px auto 60px;
+	min-height:80%; 
+	 position:relative;
+	  padding:100px 0;/* footer height */
+}
+
+#s_management h1{
+	 text-align: center;
+	margin-top: 50px;	 
+}
+/* 테이블---------------------------------------- */
+table.management_table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-left: 1px solid #ccc;
+    margin: 0 auto;
+}
+
+table.management_table thead th {
+  padding: 10px;
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 2px solid #036;
+  background: #dcdcd1;
+}
+table.management_table tbody th {
+  width: 200px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #ececec;
+}
+table.management_table td {
+  width: 200px;
+  padding: 10px;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+table.management_table td .button{
+	background-color: #3a75d4;
+	color: white;
+		width: 50px;
+	height: 20px;
+	border-radius: 10px;
+	margin:0 5px;
+}
+table.management_table td button:hover{
+	background-color: #2e5eaa;
+}
+	/* paging */
+	
+	table tfoot ol.paging {
+	    list-style:none;
+	}
+	
+	table tfoot ol.paging li {
+	    float:left;
+	    margin-right:8px;
+	}
+	
+	table tfoot ol.paging li a {
+	    display:block;
+	    padding:3px 7px;
+	    border:1px solid #00B3DC;
+	    color:#2f313e;
+	    font-weight:bold;
+	}
+	
+	table tfoot ol.paging li a:hover {
+	    background:#00B3DC;
+	    color:white;
+	    font-weight:bold;
+	}
+	
+	.disable {
+	    padding:3px 7px;
+	    border:1px solid silver;
+	    color:silver;
+	}
+	
+	.now {
+	   padding:3px 7px;
+	    border:1px solid #72a5db;
+	    background:#72a5db;
+	    color:white;
+	    font-weight:bold;
+	}
+	
+	
+	.blc_mem{
+	color: white;
+	background-color: red;
+	}
+	.blc_mem:hover{
+	background-color: #ba281c;
+	
+	}
+	.rcv_mem{
+	color: white;
+	background-color: blue;
+	}
+	.rcv_mem:hover{
+	background-color: #0000c2;
+	}
+	
+	
+	.empty{ height: 50px; }

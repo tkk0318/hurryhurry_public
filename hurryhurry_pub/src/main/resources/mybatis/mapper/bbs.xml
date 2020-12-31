@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+
+	<!-- 마이페이지 리뷰 조회 -->
+	<select id="list" parameterType="String"
+		resultType="com.toilet.vo.BbsVO">
+		SELECT * FROM review_t WHERE
+		(status = 0 OR status = 1) AND
+		userID = #{userID} ORDER BY review_idx DESC
+	</select>
+
+	<!-- 모든 리뷰 불러오기(임시) -->
+	<select id="all" parameterType="java.util.Map"
+		resultType="com.toilet.vo.BbsVO">
+		SELECT * FROM review_t
+	</select>
+
+	<!-- 화장실 리뷰 조회 -->
+	<select id="toilet" parameterType="String"
+		resultType="com.toilet.vo.BbsVO">
+		SELECT * FROM review_t where
+		(status = 0 OR status = 1) AND
+		toilet_name
+		= #{toilet_name} ORDER BY review_idx DESC
+	</select>
+
+	<!-- 별점 평균 -->
+	<select id="avgStar" parameterType="String" resultType="String">
+		SELECT
+		AVG(star) FROM review_t
+		WHERE toilet_name = #{toilet_name}
+	</select>
+
+	<!--리뷰 수정 -->
+	<update id="edit" parameterType="com.toilet.vo.BbsVO">
+		UPDATE review_t
+		SET
+		content =
+		#{content},
+		star = #{star}
+		WHERE review_idx = #{review_idx}
+	</update>
+
+	<!-- 리뷰수정후 다시 데이터뿌려주기 위해 review_idx에 해당하는 리뷰내용 검색 -->
+	<select id="getEditContent" parameterType="String"
+		resultType="String">
+		SELECT content FROM review_t
+		WHERE review_idx = #{review_idx}
+	</select>
+
+	<!--리뷰 삭제 -->
+	<update id="del" parameterType="String">
+		UPDATE review_t
+		SET status = 2
+		WHERE review_idx = #{review_idx}
+	</update>
+
+	<!-- 리뷰 쓰기 -->
+	<insert id="add" parameterType="com.toilet.vo.BbsVO">
+		INSERT INTO review_t(review_idx, toilet_name, userID, content, star,
+		reg_date, ip, status, likes, report)
+		VALUES(review_seq.NEXTVAL, #{toilet_name}, #{userID}, #{content}, #{star}, sysdate, #{ip}, 0, 0,
+		0)
+	</insert>
+
+	<!-- 좋아요기능 -->
+	<!-- 리뷰 좋아요 여부 검색 -->
+	<select id="like_check" parameterType="com.toilet.vo.LikeVO"
+		resultType="int">
+		SELECT COUNT(*) FROM like_rec
+		WHERE review_idx =
+		#{review_idx} AND userID = #{userID}
+	</select>
+
+	<!-- 리뷰 추천 -->
+	<insert id="like_new" parameterType="com.toilet.vo.LikeVO">
+		INSERT INTO
+		like_rec(like_idx, review_idx, userID)
+		VALUES(like_seq.nextval,
+		#{review_idx}, #{userID})
+	</insert>
+
+	<!-- 리뷰 추천 취소 -->
+	<delete id="like_delete" parameterType="com.toilet.vo.LikeVO">
+		DELETE FROM like_rec
+		WHERE review_idx = #{review_idx} AND userID = #{userID}
+	</delete>
+
+	<!-- 로그인한 회원이 좋아요한 리뷰idx 모두 가져오기 for 좋아요 버튼 색 구분 -->
+	<select id="like_didyou" parameterType="String"
+		resultType="com.toilet.vo.LikeVO">
+		SELECT review_idx FROM like_rec
+		WHERE userID = #{userID}
+	</select>
+	<!-- 좋아요 기능 끝 -->
+
+	<!-- 리뷰신고기능 -->
+	<!-- 리뷰 신고하기 -->
+	<insert id="reportReview" parameterType="com.toilet.vo.ReportVO">
+		INSERT INTO
+		report_t(report_idx, toilet_name, content, reason, report_date,
+		reporter, ip, status, writer, review_idx)
+		VALUES(report_seq.NEXTVAL, #{toilet_name}, #{content}, #{reason}, sysdate, #{reporter}, #{ip},
+		0, #{writer}, #{review_idx})
+	</insert>
+
+	<!-- 리뷰 신고시 화장실정보 얻어오기 -->
+	<select id="getToiletInfo" parameterType="String"
+		resultType="com.toilet.vo.BbsVO">
+		SELECT * FROM review_t
+		WHERE review_idx = #{review_idx}
+	</select>
+	<!-- 리뷰신고기능끝 -->
+	
+	<!-- 신고현황페이지 - 신고내용 보기 -->
+	<select id="report_view" resultType="com.toilet.vo.ReportVO">
+		SELECT rownum r_num, a.* FROM(
+		SELECT * FROM report_t WHERE status = 0 ORDER BY report_idx DESC
+		) a
+	</select>
+
+	<!-- 신고현황페이지 - 신고내역 자체 처리 -->
+	<update id="report_cpl" parameterType="String">
+		UPDATE report_t
+		SET status
+		= 1
+		WHERE report_idx = #{report_idx}
+	</update>
+
+	<!-- 신고현황페이지 - 중복된 리뷰신고 처리 -->
+	<update id="report_cplALL" parameterType="String">
+		UPDATE report_t
+		SET
+		status = 1
+		WHERE review_idx = #{review_idx}
+	</update>
+
+	<!-- 신고현황페이지 - 신고된 리뷰 차단 -->
+	<update id="review_block" parameterType="String">
+		UPDATE review_t
+		SET
+		status = 1
+		WHERE review_idx = #{review_idx}
+	</update>
+
+	<!-- 신고현황페이지 - 신고된 회원 경고 -->
+	<update id="user_warn" parameterType="String">
+		UPDATE mem_t
+		SET status =
+		status + 1
+		WHERE userID = #{writer}
+	</update>
+
+	<!-- 신고현황페이지 - 신고된 회원차단 -->
+	<update id="user_block" parameterType="String">
+		UPDATE mem_t
+		SET status = 3
+		WHERE userID = #{userID}
+	</update>
+
+	<!-- 신고현황페이지 - 신고철회 -->
+	<update id="report_deny" parameterType="String">
+		UPDATE report_t
+		SET status
+		= 2
+		WHERE report_idx = #{report_idx}
+	</update>
+
+	<!-- 회원관리페이지 - 모든 회원내역 불러오기 -->
+	<select id="everyMem" parameterType="java.util.Map"
+		resultType="com.toilet.vo.MemVO">
+		SELECT * FROM (
+		SELECT rownum r_num, a.* FROM(
+		SELECT * FROM mem_t
+		ORDER BY mem_idx ASC
+		) a
+		) WHERE r_num BETWEEN #{begin} AND #{end}
+	</select>
+
+	<!-- 회원관리페이지 - 모든 회원 수 구하기 -->
+	<select id="totalMemCount" resultType="int">
+		SELECT COUNT(*) FROM mem_t
+	</select>
+
+	<!-- 회원관리페이지 - 회원차단 -->
+	<update id="mem_block" parameterType="String">
+		UPDATE mem_t
+		SET status = 3
+		WHERE userID = #{userID}
+	</update>
+
+	<!-- 회원관리페이지 - 회원복구 -->
+	<update id="mem_recover" parameterType="String">
+		UPDATE mem_t
+		SET status =
+		0
+		WHERE userID = #{userID}
+	</update>
+
+	<!-- 등록된 전체리뷰 페이지 - 전체 리뷰 불러오기 -->
+	<select id="totalReview" parameterType="java.util.Map"
+		resultType="com.toilet.vo.BbsVO">
+		SELECT * FROM (
+		SELECT rownum r_num, a.* FROM(
+		SELECT * FROM review_t
+		ORDER BY review_idx ASC
+		) a
+		) WHERE r_num BETWEEN #{begin} AND #{end}
+	</select>
+
+	<!-- 등록된 전체리뷰 페이지 - 전체 등록된 리뷰 갯수 구하기 -->
+	<select id="totalRevCount" resultType="int">
+		SELECT COUNT(*) FROM
+		review_t
+	</select>
+
+	<!-- 등록된 전체리뷰 페이지 - 리뷰 검색 기능, 동적쿼리활용 -->
+	<select id="searchReview" resultType="com.toilet.vo.BbsVO"
+		parameterType="java.util.Map">
+		SELECT * FROM (
+		SELECT rownum r_num, a.* FROM(
+		SELECT * FROM review_t
+		<if test="searchType != null and searchValue != null">
+			<trim prefix="where">
+				<choose>
+					<when test="searchType == 0">
+						LOWER(toilet_name) LIKE LOWER('%'||#{searchValue}||'%')
+					</when>
+					<when test="searchType == 1">
+						LOWER(content) LIKE LOWER('%'||#{searchValue}||'%')
+					</when>
+				</choose>
+			</trim>
+		</if>
+		ORDER BY review_idx ASC
+		) a
+		) WHERE r_num BETWEEN #{begin} AND #{end}
+	</select>
+
+	<!-- 등록된 전체리뷰 페이지 - 검색된 리뷰 개수 구하기 -->
+	<select id="searchRevCount" resultType="int"
+		parameterType="java.util.Map">
+		SELECT COUNT(*) FROM review_t
+		<if test="searchType != null and searchValue != null">
+			<trim prefix="where">
+				<choose>
+					<when test="searchType == 0">
+						LOWER(toilet_name) LIKE
+						LOWER('%'||#{searchValue}||'%')
+					</when>
+					<when test="searchType == 1">
+						LOWER(content) LIKE LOWER('%'||#{searchValue}||'%')
+					</when>
+				</choose>
+			</trim>
+		</if>
+	</select>
+
+	<!-- 등록된 전체리뷰 페이지 - 리뷰차단 해제하기 -->
+	<select id="review_recover" parameterType="String">
+		UPDATE review_t SET
+		status = 0
+		WHERE review_idx = #{review_idx}
+	</select>
+
+	<!-- 등록된 전체리뷰 페이지 - 리뷰차단 해제하면서 해당회원 status-1 회복 -->
+	<select id="mem_statDOWN" parameterType="String">
+		UPDATE mem_t SET status
+		= status-1
+		WHERE userID = #{userID}
+	</select>
+
+</mapper>

@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    cursor: pointer;
+}
+.rating .rate_radio:checked + label {
+    background-position:0 0;
+}
+
+.reviewform textarea{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    cursor: pointer;
+}
+.rating .rate_radio:checked + label {
+    background-position:0 0;
+}
+.warning_msg {
+    display: none;
+    position: relative;
+    text-align: center;
+    background: #ffffff;
+    line-height: 26px;
+    width: 100%;
+    color: red;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
+
+form.reviewform div.cmd input#save{
+	width: 20%;
+	background-color: #3a75d4;
+	color: white;
+	height: 30px;
+	border-radius: 5px;
+}
+form.reviewform div.cmd input#save:hover{
+background-color: #2e5eaa;
+}

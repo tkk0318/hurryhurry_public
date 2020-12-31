@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+
+#s_report{
+	width: 1200px;
+	margin: 0px auto -120px;
+	min-height:80%;
+	 position:relative;
+	  padding:100px 0 120px;/* footer height */
+}
+#s_report h1{
+	 text-align: center;
+	margin-top: 50px;	 
+} 
+
+section#s_report input#totalbutton{
+	position: relative;
+	right: -74%;
+}
+
+
+/* 테이블---------------------------------------- */
+table.report_table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  margin: 0 auto;
+
+}
+table.report_table thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+  border-bottom: 3px solid #036;
+   text-align: center;
+}
+table.report_table tbody th {
+  width: 400px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+  text-align: center;
+  cursor: pointer;
+}
+table.report_table tbody th:hover{
+	color: #3a75d4;
+	
+}
+table.report_table td {
+  width: 400px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+.hidden_page{
+	display: none;
+}
+/* .toggle {
+	border: none;
+	color: #3a75d4;
+	background: none;
+	
+} */
+
+div.cut_btn{
+	width: 100%;
+	text-align: center;
+}
+div.cut_btn button{
+	
+	background-color: #3a75d4;
+	color: white;
+		width: 70px;
+	height: 30px;
+	border-radius: 10px;
+	margin:0 5px;
+}
+div.cut_btn button:hover {
+	background-color: #2e5eaa;
+}
+

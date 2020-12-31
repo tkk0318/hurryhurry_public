@@ -1,0 +1,373 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div#map {
+	width: 100%;
+	height: 800px;
+	transition: .5s;
+}
+
+.center {
+	text-align: center;
+}
+
+#Current {
+	position: fixed;
+	top: 40px;
+	left: 80px;
+	z-index: 111;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+#search {
+	border: 1px solid gray;
+	width: 500px;
+	height: 50px;
+	border-radius: 10px;
+	font-size: 15px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+#map_search {
+	margin-top: 30px;
+	position: relative;
+	z-index: 11;
+}
+
+#s_btn {
+	width: 70px;
+	height: 50px;
+	font-size: 20px;
+	color: white;
+	border-radius: 10px;
+	background-color: #3a75d4;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+#s_btn:hover {
+	background-color: #2e5eaa;
+}
+
+.divBtn {
+	background-color: white;
+	border: 1px solid #3a75d4;
+	color: #3a75d4;
+	width: 70px;
+	height: 50px;
+	font-size: 18px;
+	border-radius: 10px;
+	margin: 20px 30px 0 30px;
+	cursor: pointer;
+	width: 70px;
+}
+
+.dibBtn:hover {
+	background-color: #3a75d4;
+	border: none;
+	color: white;
+}
+
+/*-- 버튼 선택시---*/
+.checked{
+	background-color: #3a75d4;
+	border: none;
+	color: white;
+	width: 70px;
+	height: 50px;
+	font-size: 18px;
+	border-radius: 10px;
+	margin: 20px 30px 0 30px;
+	cursor: pointer;
+	width: 70px;
+}
+
+/*-- 마커 클릭시 팝업 오버레이창 --*/
+.wrap {position: absolute;left: 0;bottom: 40px;width: 222px;height: 122px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 220px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 13px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .butt {
+    	background-color: white;
+		border: 1px solid #3a75d4;
+		color: #3a75d4;
+		border-radius: 5px;
+		cursor: pointer;
+		padding: 2px;
+    }
+/* 햄버거 버튼--------------------------------------------- */
+#line-wrapper {
+	cursor: pointer;
+	width: 56px;
+	height: 35px;
+	position: fixed;
+	top: 40px;
+	right: 80px;
+	z-index: 111;
+	transition: .5s;
+}
+
+.init {
+	animation: none !important;
+}
+
+.line {
+	background: #3a3a3a;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	width: 56px;
+	height: 8px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.line-top {
+	animation: line-top .5s forwards ease-out, line-top-rotate .3s .5s
+		forwards ease-out;
+}
+
+.top-reverse {
+	animation: line-top-rotate-reverse .3s forwards ease-out,
+		line-top-reverse .5s .3s forwards ease-out;
+}
+
+.line-mid {
+	animation: line-mid .5s forwards ease-out;
+}
+
+.mid-reverse {
+	animation: line-mid-invisible .3s forwards ease-out, line-mid-reverse
+		.5s .3s forwards ease-out;
+}
+
+.line-bot {
+	animation: line-bot .5s forwards ease-out, line-bot-rotate .3s .5s
+		forwards ease-out;
+}
+
+.bot-reverse {
+	animation: line-bot-rotate-reverse .3s forwards ease-out,
+		line-bot-reverse .5s .3s forwards ease-out;
+}
+
+@keyframes line-top {
+  0% {transform:translateY(0px)}
+  100% {transform:translateY(13px)}
+}
+@keyframes line-top-reverse {
+  0% {transform:translateY(13px)}
+  100% {transform:translateY(0px)}
+}
+@keyframes line-top-rotate {
+  0% {transform:translateY(13px) rotateZ(0deg)}
+  100% {transform:translateY(13px) rotateZ(45deg)}
+}
+@keyframes line-top-rotate-reverse {
+  0% {transform:translateY(13px) rotateZ(45deg)}
+  100% {transform:translateY(13px) rotateZ(0deg)}
+}
+@keyframes line-mid {
+  0% {transform:scale(1)}
+  100% {transform:scale(0)}
+}
+@keyframes line-mid-reverse {
+  0% {transform:scale(0)}
+  100% {transform:scale(1)}
+}
+@keyframes line-mid-invisible {
+  0% {transform:scale(0)}
+  100% {transform:scale(0)}
+}
+@keyframes line-bot {
+  0% {transform:translateY(0px)}
+  100% {transform:translateY(-13px)}
+}
+@keyframes line-bot-reverse {
+  0% {transform:translateY(-13px)}
+  100% {transform:translateY(0px)}
+}
+@keyframes line-bot-rotate {
+  0% {transform:translateY(-13px) rotateZ(0deg)}
+  100% {transform:translateY(-13px) rotateZ(135deg)}
+}
+@keyframes line-bot-rotate-reverse {
+  0% {transform:translateY(-13px) rotateZ(135deg)}
+  100% {transform:translateY(-13px) rotateZ(0deg)}
+}
+/* ---------------------메뉴바----------------------- */
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 11;
+	top: 0;
+	right: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+.sidenav p {
+	font-size: 50px;
+	color: white;
+	text-align: center;
+}
+
+.sidenav a {
+	padding: 20px 25px;
+	text-decoration: none;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: gray;
+}
+
+#menu1{
+	display: block;
+	text-align: center;
+}
+.sidenav #menu1, #menu2 {
+	display: none;
+}
+
+.sidenav #menu1 a, #menu2 a {
+	display: inline;
+}
+
+.sidenav #menu1 a img {
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+
+.sidenav #menu2 a img {
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+/* -----------------leftArea------------------------ */
+div#leftArea{
+	height:100%; 
+	overflow-x: hidden;
+	width:0px;
+	position:fixed;
+	top:0;
+	left:0;
+	 background-color: #f5f6f9; 
+	z-index: 1111;
+	transition: .5s;
+	 }
+	 div#leftArea p{
+	text-align: center;
+	border-bottom:0.5px solid #d9d8da;
+	margin: 0px;
+	padding: 20px 0;
+	 }
+	 div#leftArea div table{
+	 	margin:0 auto;
+	 	border-collapse: collapse;
+	 	width: 80%;
+	 }
+	 div#leftArea div table, tr, td{
+	font-size: 18px;
+	text-align: center;
+	 }
+	 div#leftArea p#Tname{
+	 border:none;
+	 padding:10px 0;
+	 font-size: 30px;
+	 font-weight: bold;
+	 color:white;
+	 background-color: #3a75d4;
+	 }
+	 
+	
+	div#leftArea>div input#write{
+	width: 300px;
+	height:100px; 
+	
+	}
+	
+	div#leftArea div#write_t{
+	padding-bottom: 20px;
+	background-color: white;
+	}
+	div#leftArea div#review_t{
+	border-top: 2px dotted gray;
+	
+	}
+	div#leftArea div#review_t table#review td {
+	border-bottom: 2px dotted gray;
+	padding-bottom: 15px;
+	}
+	div#leftArea div#review_t div:nth-child(3) {
+	height: auto;	
+	border: none;
+	
+}
+#img_btn input{
+	width: 25px;
+	height: 25px;
+}
+
+/*------------모달창 CSS-------------------*/
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 20%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/*-----------별점 수정 CSS-------------*/
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}

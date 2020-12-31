@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+#s_mypage{
+	width: 1200px;
+	margin: 0px auto ;
+	min-height:100%;
+	 position:relative;
+	 padding:50px 0;/* footer height */
+}
+#s_mypage h1{
+    text-align: center;
+	margin-top: 50px;
+	
+} 
+
+
+
+/* 테이블---------------------------------------- */
+table.mypage_table {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin: 20px 10px;
+   margin: 0 auto;
+}
+table.mypage_table th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #efefef;
+  text-align: center;
+}
+table.mypage_table td {
+  width: 350px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+tr td#cut_btn{
+	text-align: center;
+}
+
+/*-----------별점 수정 CSS-------------*/
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
