@@ -120,7 +120,7 @@
 				<!-- 소셜로그인 -->
 				<div id="menu1">
 					<!-- 카카오 -->
-					<a href="https://kauth.kakao.com/oauth/authorize?client_id=f57259f7678b116ed607a9ea7083c3b1
+					<a href="https://kauth.kakao.com/oauth/authorize?client_id=restapi키값
 					&redirect_uri=http://localhost:8080/kakao&response_type=code">
 						<img alt="kakao" src="img/kakao.png">
 					</a>
@@ -163,7 +163,7 @@
 			
 	</div>
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccd2f5f046ad38dfd406c9e6f5d73d1a"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=restapi키값"></script>
 
 
 
