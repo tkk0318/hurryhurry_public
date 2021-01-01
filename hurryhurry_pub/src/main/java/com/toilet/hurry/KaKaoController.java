@@ -55,7 +55,7 @@ public class KaKaoController {
 			//인자 4개를 만들어서 카카오 서버로 보낸다.
 			//grant_type, client_id,redirect_uri,code
 			StringBuffer sb = new StringBuffer();
-			sb.append("grant_type=authorization_code&client_id=f57259f7678b116ed607a9ea7083c3b1");
+			sb.append("grant_type=authorization_code&client_id=restapi키값");
 			sb.append("&redirect_uri=http://localhost:8080/kakao");
 			sb.append("&code="+code);
 			
